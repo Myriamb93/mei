@@ -1,0 +1,34 @@
+{
+    "jElearningApp": {
+        "tquestion" : {
+            "home": {
+                "title": "Questions",
+                "createLabel": "Créer une nouvelle Question",
+                "createOrEditLabel": "Créer ou éditer une Question"
+            },
+            "created": "Une nouvelle Question a été créée avec l'identifiant {{ param }}",
+            "updated": "La Question avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "La Question avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Question {{ id }} ?"
+            },
+            "detail": {
+                "title": "Question"
+            },
+            "quest": "Quest",
+            "first": "First",
+            "second": "Second",
+            "third": "Third",
+            "fourth": "Fourth",
+            "vfirst": "Vfirst",
+            "vsecond": "Vsecond",
+            "vthird": "Vthird",
+            "vfourth": "Vfourth",
+            "level": "Level",
+            "protect": "Protect",
+            "activation": "Activation",
+            "questionQuiz": "Question Quiz",
+            "qestionReponse": "Qestion Reponse"
+        }
+    }
+}

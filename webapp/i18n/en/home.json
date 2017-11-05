@@ -1,0 +1,14 @@
+{
+    "home": {
+        "title": "Welcome to Digital Learning !",
+        "subtitle": "This is your homepage",
+        "logged": {
+            "message": "You are logged in as user \"{{username}}\"."
+        },
+        "question": "If you have any question on Digital Learning:",
+        "link": {
+            "homepage": "Dima Consulting",
+            "stackoverflow": "Dima Consulting on Facebook"
+        }
+    }
+}

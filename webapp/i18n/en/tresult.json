@@ -1,0 +1,26 @@
+{
+    "jElearningApp": {
+        "tresult" : {
+            "home": {
+                "title": "Tresults",
+                "createLabel": "Create a new Tresult",
+                "createOrEditLabel": "Create or edit a Tresult"
+            },
+            "created": "A new Tresult is created with identifier {{ param }}",
+            "updated": "A Tresult is updated with identifier {{ param }}",
+            "deleted": "A Tresult is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tresult {{ id }}?"
+            },
+            "detail": {
+                "title": "Tresult"
+            },
+            "date": "Date",
+            "nbre": "Nbre",
+            "result": "Result",
+            "resultUser": "Result User",
+            "resultQuiz": "Result Quiz",
+            "resultReponse": "Result Reponse"
+        }
+    }
+}

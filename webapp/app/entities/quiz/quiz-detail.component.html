@@ -1,0 +1,39 @@
+
+<div *ngIf="quiz">
+    <h2><span jhiTranslate="jElearningApp.quiz.detail.title">Quiz</span> {{quiz.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jElearningApp.quiz.date">Date</span></dt>
+        <dd>
+            <span>{{quiz.date | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.quiz.result">Result</span></dt>
+        <dd>
+            <span>{{quiz.result}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.quiz.chapitre">Chapitre</span></dt>
+        <dd>
+            <div *ngIf="quiz.chapitre">
+                <a [routerLink]="['/chapitre', quiz.chapitre?.id]">{{quiz.chapitre?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.quiz.quizUser">Quiz User</span></dt>
+        <dd>
+            {{quiz.quizUser?.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'quiz/'+ quiz.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

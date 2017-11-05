@@ -1,0 +1,39 @@
+
+<div *ngIf="examen">
+    <h2><span jhiTranslate="jElearningApp.examen.detail.title">Examen</span> {{examen.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jElearningApp.examen.date">Date</span></dt>
+        <dd>
+            <span>{{examen.date | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.examen.result">Result</span></dt>
+        <dd>
+            <span>{{examen.result}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.examen.examenUser">Examen User</span></dt>
+        <dd>
+            {{examen.examenUser?.id}}
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.examen.examenCours">Examen Cours</span></dt>
+        <dd>
+            <div *ngIf="examen.examenCours">
+                <a [routerLink]="['/cours', examen.examenCours?.id]">{{examen.examenCours?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'examen/'+ examen.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

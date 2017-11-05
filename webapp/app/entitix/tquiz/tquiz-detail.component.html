@@ -1,0 +1,36 @@
+
+<div *ngIf="tquiz">
+    <h2><span>Tquiz</span> {{tquiz.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Descrip</span></dt>
+        <dd>
+            <span>{{tquiz.descrip}}</span>
+        </dd>
+        <dt><span>Nbre</span></dt>
+        <dd>
+            <span>{{tquiz.nbre}}</span>
+        </dd>
+        <dt><span>Icone</span></dt>
+        <dd>
+            <div *ngIf="tquiz.icone">
+                <a (click)="openFile(tquiz.iconeContentType, tquiz.icone)">open</a>
+                {{tquiz.iconeContentType}}, {{byteSize(tquiz.icone)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tquiz/'+ tquiz.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

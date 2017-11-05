@@ -1,0 +1,75 @@
+
+<div *ngIf="tquestion">
+    <h2><span>Tquestion</span> {{tquestion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Quest</span></dt>
+        <dd>
+            <span>{{tquestion.quest}}</span>
+        </dd>
+        <dt><span>First</span></dt>
+        <dd>
+            <span>{{tquestion.first}}</span>
+        </dd>
+        <dt><span>Second</span></dt>
+        <dd>
+            <span>{{tquestion.second}}</span>
+        </dd>
+        <dt><span>Third</span></dt>
+        <dd>
+            <span>{{tquestion.third}}</span>
+        </dd>
+        <dt><span>Fourth</span></dt>
+        <dd>
+            <span>{{tquestion.fourth}}</span>
+        </dd>
+        <dt><span>Vfirst</span></dt>
+        <dd>
+            <span>{{tquestion.vfirst}}</span>
+        </dd>
+        <dt><span>Vsecond</span></dt>
+        <dd>
+            <span>{{tquestion.vsecond}}</span>
+        </dd>
+        <dt><span>Vthird</span></dt>
+        <dd>
+            <span>{{tquestion.vthird}}</span>
+        </dd>
+        <dt><span>Vfourth</span></dt>
+        <dd>
+            <span>{{tquestion.vfourth}}</span>
+        </dd>
+        <dt><span>Level</span></dt>
+        <dd>
+            <span>{{tquestion.level}}</span>
+        </dd>
+        <dt><span>Protect</span></dt>
+        <dd>
+            <span>{{tquestion.protect}}</span>
+        </dd>
+        <dt><span>Activation</span></dt>
+        <dd>
+            <span>{{tquestion.activation}}</span>
+        </dd>
+        <dt><span>Question Quiz</span></dt>
+        <dd>
+            <div *ngIf="tquestion.questionQuizId">
+                <a [routerLink]="['/tquiz', tquestion.questionQuizId]">{{tquestion.questionQuizId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tquestion/'+ tquestion.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,147 @@
+<style>
+    div{
+        margin: auto;
+    }
+    .divall{
+        margin: auto;
+        alignment: center;
+    }
+    .divtitre{
+        width: 1250px;
+    }
+    .divleft{
+        width: 80%;
+        float: left;
+    }
+    .divvideo{
+        margin: auto;
+        text-align: center;
+    }
+
+    pdf-viewer{
+        width: 1250px;
+        height: auto;
+        display: block;
+
+        overflow-y: scroll;
+        text-align: center;
+        margin: auto;
+    }
+
+
+
+    .icon-bar {
+        width: 1250px;
+        background-color: #555;
+        overflow: auto;
+        text-align: center;
+
+    }
+
+    .icon-bar li{
+
+        float: left;
+        width: 9%;
+        text-align: center;
+        padding: 12px ;
+        color: white;
+        font-size: 19px;
+        margin: auto;
+    }
+
+
+    .icon-bar li:hover {
+
+    }
+
+</style>
+
+<div class="divall" *ngIf="chapitre">
+    <div class="divtitre">
+
+        <div class="divleft">
+            <h2><b>Cours</b> : {{chapitre.cours.descrip}}</h2>
+            <h2><b>Chapitre {{chapitre.rang}}</b> : {{chapitre.descrip}}</h2>
+        </div>
+
+        <div class="divright">
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
+                    [routerLink]="['/', { outlets: { popup: 'chapitre/'+ chapitre.id + '/edit'} }]"
+                    replaceUrl="true"
+                    class="btn btn-primary">
+                <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+            <br><br>
+
+
+            <div>
+
+                <button class="btn btn-primary" type="button"
+                        [routerLink]="['/quizComp', chapitre.id ]" title="Passer le Quiz du chapitre">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    <span >
+                                   Quiz
+                                    </span>
+                </button>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div *ngIf="chapitre.video != null" class="divvideo">
+        <br>
+
+        <iframe width="560" height="315"  [(src)]="url" frameborder="0" allowfullscreen></iframe>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div class="icon-bar">
+        <ul>
+
+
+            <li (click)="rotate(90)" style="margin-left: 120px"  class="fa fa-repeat"></li>
+
+            <li (click)="rotate(-90)" class="fa fa-undo"></li>
+
+            <li (click)="incrementPage(-1)" class="fa fa-arrow-left"></li>
+
+            <li class="input-group" >
+                <input type="text" type="number" #xx min="1" max="totalPages" [(value)]="page" (keyup)="pagecount(xx.value)"  style="display:block; width: 80px;  text-align: center; float: left; margin-top: 0px; margin-bottom: 0px;"  aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2">  / {{totalPages}}</span>
+            </li>
+            <li (click)="incrementPage(1)" style="margin-left: 50px" class="fa fa-arrow-right"></li>
+
+            <li (click)="incrementZoom(-0.1)" class="fa fa-plus"> </li>
+            <li (click)="incrementZoom(0.1)" class="fa fa-minus"></li>
+
+            <li  class="fa fa-window-restore" (click)="zoom=1.2999999999999998" title="zoom par defaut" ></li>
+
+
+        </ul>
+    </div>
+
+    <div class="divpdf">
+        <pdf-viewer #myPdfViewer
+                    [src]="data"
+                    [render-text]="false"
+                    (after-load-complete)="callBackFn($event)"
+                    [(page)]="page"
+                    [rotation]="rotation"
+                    [original-size]="originalSize"
+                    [show-all]="showAll"
+                    [zoom]="zoom"
+
+        ></pdf-viewer>
+    </div>
+
+
+</div>

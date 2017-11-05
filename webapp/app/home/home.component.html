@@ -1,0 +1,115 @@
+
+<div class="row" >
+    <div class="col-md-3 ">
+        <span class=" hipster"></span>
+    </div>
+    <div class="col-md-9">
+
+        <h1 class="display-4" jhiTranslate="home.title">Welcome  </h1>
+
+
+        <div [ngSwitch]="isAuthenticated()">
+            <div class="alert alert-success" style="background-color: #94d3ea;
+            border-color: #94d3ea;
+            color: #055269" *ngSwitchCase="true">
+            <span *ngIf="account" jhiTranslate="home.logged.message"
+                  translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
+            </div>
+
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
+                <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a>
+            </div>
+
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
+                <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
+            </div>
+        </div>
+
+        <p jhiTranslate="home.question">
+            If you have any question on Digital Learning:
+        </p>
+
+        <ul>
+            <li><a href="http://www.dimaconsulting.fr/" target="_blank" jhiTranslate="home.link.homepage">Dima Consulting</a></li>
+            <li><a href="https://fr-fr.facebook.com/dimaconsulting/" target="_blank" jhiTranslate="home.link.stackoverflow">Dima Consulting on Facebook</a></li>
+
+        </ul>
+
+    </div>
+</div>
+
+
+
+
+
+
+        <div  *ngIf="isAuthenticated()" class="row">
+            <div class="gallery_product col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <h2 >Nos Quiz</h2>
+            </div>
+
+        </div>
+
+        <div  *ngIf="isAuthenticated()" class="row">
+
+            <div *ngFor="let tquiz of tquiz"  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs" [routerLink]="['/tquiz/'+ tquiz.id + '/qcm']"
+                            replaceUrl="true">{{tquiz.descrip}}</button>
+            </div>
+
+            <!--
+            <div  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs">HTML</button>
+            </div>
+
+
+            <div  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs">CSS</button>
+            </div>
+
+
+            <div  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs">JavaScript</button>
+            </div>
+
+
+            <div  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs">Hybernate</button>
+            </div>
+
+            <div  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs">JEE</button>
+            </div>
+             <div  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs">Spring</button>
+            </div>
+            <div  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs">Maven</button>
+            </div>
+            <div  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs">NPM</button>
+            </div>
+            <div  class="gallery_product col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+                    <button type="button" class="btn btn-primary btn-round-xs btn-xs">SVN</button>
+            </div> -->
+        </div>
+            <div class="row">
+                <div class="gallery_product col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <h2>Nos Cours disponibles gratuitement</h2>
+                </div>
+            </div>
+
+            <div class="row">
+
+            <div *ngFor="let cours of cours;" class="gallery_product col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                <figure [routerLink]="['../cours', cours.id ]">
+                <img src="{{safeURL(cours.iconeContentType,cours.icone)}}" class="icone img-thumbnail" title="{{cours.descrip}}" >
+                <figcaption>{{cours.descrip}} </figcaption>
+                </figure>
+            </div>
+
+
+        </div>
+

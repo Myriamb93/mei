@@ -1,0 +1,62 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCoursLabel" jhiTranslate="jElearningApp.cours.home.createOrEditLabel">Create or edit a Cours</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div   *ngIf="cours.id">
+            <b>Modification du cours > {{cours.descrip}} </b>
+        </div>
+        <div class="form-group" [hidden]="true">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="cours.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label"   for="field_descrip">Déscription</label>
+            <input type="text" class="form-control" name="descrip" id="field_descrip"
+                [(ngModel)]="cours.descrip"
+             required/>
+            <div [hidden]="!(editForm.controls.descrip?.dirty && editForm.controls.descrip?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.descrip?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.cours.icone" for="field_icone">Icone</label>
+            <div>
+                <div *ngIf="cours.icone" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(cours.iconeContentType, cours.icone)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{cours.iconeContentType}}, {{byteSize(cours.icone)}}</span>
+                    <button type="button" (click)="cours.icone=null;cours.iconeContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, cours, 'icone', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="icone" id="field_icone"
+                   [(ngModel)]="cours.icone"
+            />
+            <input type="hidden" class="form-control" name="iconeContentType" id="field_iconeContentType"
+                   [(ngModel)]="cours.iconeContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

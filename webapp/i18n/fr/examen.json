@@ -1,0 +1,24 @@
+{
+    "jElearningApp": {
+        "examen" : {
+            "home": {
+                "title": "Examen",
+                "createLabel": "Créer un nouveau Examen",
+                "createOrEditLabel": "Créer ou éditer un Examen"
+            },
+            "created": "Un nouveau Examen a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Examen avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Examen avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Examen {{ id }} ?"
+            },
+            "detail": {
+                "title": "Examen"
+            },
+            "date": "Date",
+            "result": "Result",
+            "examenUser": "Examen User",
+            "examenCours": "Examen Cours"
+        }
+    }
+}

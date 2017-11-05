@@ -1,0 +1,49 @@
+
+<div *ngIf="treponse">
+    <h2><span>Treponse</span> {{treponse.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Rfirst</span></dt>
+        <dd>
+            <span>{{treponse.rfirst}}</span>
+        </dd>
+        <dt><span>Rsecond</span></dt>
+        <dd>
+            <span>{{treponse.rsecond}}</span>
+        </dd>
+        <dt><span>Rthird</span></dt>
+        <dd>
+            <span>{{treponse.rthird}}</span>
+        </dd>
+        <dt><span>Rfourth</span></dt>
+        <dd>
+            <span>{{treponse.rfourth}}</span>
+        </dd>
+        <dt><span>Reponse Question</span></dt>
+        <dd>
+            <div *ngIf="treponse.reponseQuestionId">
+                <a [routerLink]="['/tquestion', treponse.reponseQuestionId]">{{treponse.reponseQuestionId}}</a>
+            </div>
+        </dd>
+        <dt><span>Reponse Result</span></dt>
+        <dd>
+            <div *ngIf="treponse.reponseResultId">
+                <a [routerLink]="['/tresult', treponse.reponseResultId]">{{treponse.reponseResultId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button *ngIf="false" type="button"
+            [routerLink]="['/', { outlets: { popup: 'treponse/'+ treponse.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

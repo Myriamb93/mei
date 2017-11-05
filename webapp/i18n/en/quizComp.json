@@ -1,0 +1,15 @@
+{
+    "jElearningApp": {
+        "quizComp" : {
+            "home": {
+                "title": "Quiz",
+                "createLabel": "Create a new quizComp",
+                "createOrEditLabel": "Create or edit a quizComp"
+            },
+            "date": "Date",
+            "result": "Result",
+            "chapitre": "Chapitre",
+            "quizUser": "Quiz User"
+        }
+    }
+}

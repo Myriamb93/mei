@@ -1,0 +1,25 @@
+{
+    "jElearningApp": {
+        "tquiz" : {
+            "home": {
+                "title": "Tquizs",
+                "createLabel": "Create a new Tquiz",
+                "createOrEditLabel": "Create or edit a Tquiz"
+            },
+            "created": "A new Tquiz is created with identifier {{ param }}",
+            "updated": "A Tquiz is updated with identifier {{ param }}",
+            "deleted": "A Tquiz is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tquiz {{ id }}?"
+            },
+            "detail": {
+                "title": "Tquiz"
+            },
+            "descrip": "Descrip",
+            "nbre": "Nbre",
+            "icone": "Icone",
+            "quizResult": "Quiz Result",
+            "questionQuiz": "Question Quiz"
+        }
+    }
+}

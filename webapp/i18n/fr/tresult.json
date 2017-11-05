@@ -1,0 +1,26 @@
+{
+    "jElearningApp": {
+        "tresult" : {
+            "home": {
+                "title": "Résultats",
+                "createLabel": "Créer un nouveau Résultat",
+                "createOrEditLabel": "Créer ou éditer un Résultat"
+            },
+            "created": "Un nouveau Résultat a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Résultat avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Résultat avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Résultat {{ id }} ?"
+            },
+            "detail": {
+                "title": "Résultat"
+            },
+            "date": "Date",
+            "nbre": "Nbre",
+            "result": "Result",
+            "resultUser": "Result User",
+            "resultQuiz": "Result Quiz",
+            "resultReponse": "Result Reponse"
+        }
+    }
+}

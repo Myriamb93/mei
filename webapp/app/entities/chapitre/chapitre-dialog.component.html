@@ -1,0 +1,111 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myChapitreLabel" jhiTranslate="jElearningApp.chapitre.home.createOrEditLabel">Create or edit a Chapitre</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group"  *ngIf="chapitre.id">
+            <b>Chapitre {{chapitre.rang}} du cours > {{chapitre.cours.descrip}}</b>
+        </div>
+
+        <div class="form-group" [hidden]="!chapitre.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="chapitre.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.chapitre.descrip" for="field_descrip">Descrip</label>
+            <input type="text" class="form-control" name="descrip" id="field_descrip"
+                [(ngModel)]="chapitre.descrip"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.chapitre.video" for="field_video">Vidéo</label>
+            <input type="url" class="form-control" name="video" id="field_video"
+                   [(ngModel)]="chapitre.video"
+            />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.chapitre.rang" for="field_rang">Rang</label>
+            <input type="number" class="form-control" name="rang" id="field_rang"
+                [(ngModel)]="chapitre.rang"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.chapitre.fichier" for="field_fichier">Fichier</label>
+            <div>
+                <div *ngIf="chapitre.fichier" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(chapitre.fichierContentType, chapitre.fichier)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{chapitre.fichierContentType}}, {{byteSize(chapitre.fichier)}}</span>
+                    <button type="button" (click)="chapitre.fichier=null;chapitre.fichierContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, chapitre, 'fichier', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="fichier" id="field_fichier"
+                [(ngModel)]="chapitre.fichier"
+             />
+            <input type="hidden" class="form-control" name="fichierContentType" id="field_fichierContentType"
+                [(ngModel)]="chapitre.fichierContentType" />
+        </div>
+
+        <div class="form-group" *ngIf="!chapitre.id && !chapitre.cours?.id ">
+            <label jhiTranslate="jElearningApp.chapitre.cours"  for="field_cours">Cours</label>
+            <select class="form-control" id="field_cours" name="cours" [(ngModel)]="chapitre.cours">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="coursOption.id === chapitre.cours?.id ? chapitre.cours : coursOption" *ngFor="let coursOption of cours; trackBy: trackCoursById">{{coursOption.descrip}}</option>
+            </select>
+        </div>
+        <div class="form-group" *ngIf="!chapitre.id && chapitre.cours?.id " style="visibility: hidden">
+            <label jhiTranslate="jElearningApp.chapitre.cours"  for="field_cours">Cours</label>
+            <select class="form-control" id="field_cours" name="cours" [(ngModel)]="chapitre.cours">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="coursOption.id === chapitre.cours?.id ? chapitre.cours : coursOption" *ngFor="let coursOption of cours; trackBy: trackCoursById">{{coursOption.descrip}}</option>
+            </select>
+        </div>
+
+        <div class="form-group" *ngIf="chapitre.id" style="visibility: hidden">
+            <label jhiTranslate="jElearningApp.chapitre.cours"  for="field_cours">Cours</label>
+            <select class="form-control" id="field_cours" name="cours" [(ngModel)]="chapitre.cours">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="coursOption.id === chapitre.cours?.id ? chapitre.cours : coursOption" *ngFor="let coursOption of cours; trackBy: trackCoursById">{{coursOption.descrip}}</option>
+            </select>
+        </div>
+
+
+
+        <!--
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.chapitre.date" for="field_date">Date</label>
+            <div class="d-flex">
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="chapitre.date"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="jElearningApp.chapitre.chapitreUser" for="field_chapitreUser">Chapitre User</label>
+            <select class="form-control" id="field_chapitreUser" name="chapitreUser" [(ngModel)]="chapitre.chapitreUser" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === chapitre.chapitreUser?.id ? chapitre.chapitreUser : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+            </select>
+        </div>
+        -->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

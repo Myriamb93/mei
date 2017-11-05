@@ -1,0 +1,51 @@
+
+<div *ngIf="question">
+    <h2><span jhiTranslate="jElearningApp.question.detail.title">Question</span> {{question.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jElearningApp.question.quest">Quest</span></dt>
+        <dd>
+            <span>{{question.quest}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.question.first">First</span></dt>
+        <dd>
+            <span>{{question.first}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.question.second">Second</span></dt>
+        <dd>
+            <span>{{question.second}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.question.third">Third</span></dt>
+        <dd>
+            <span>{{question.third}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.question.fourth">Fourth</span></dt>
+        <dd>
+            <span>{{question.fourth}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.question.bon">Bon</span></dt>
+        <dd>
+            <span jhiTranslate="{{'jElearningApp.Bon.' + question.bon}}">{{question.bon}}</span>
+        </dd>
+        <dt><span jhiTranslate="jElearningApp.question.chapitre">Chapitre</span></dt>
+        <dd>
+            <div *ngIf="question.chapitre">
+                <a [routerLink]="['/chapitre', question.chapitre?.id]">{{question.chapitre?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'question/'+ question.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,56 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTresultLabel">Create or edit a Tresult</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!tresult.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="tresult.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_date">Date</label>
+            <div class="d-flex">
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="tresult.date"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nbre">Nbre</label>
+            <input type="number" class="form-control" name="nbre" id="field_nbre"
+                [(ngModel)]="tresult.nbre"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_result">Result</label>
+            <input type="number" class="form-control" name="result" id="field_result"
+                [(ngModel)]="tresult.result"  />
+        </div>
+
+        <div class="form-group">
+            <label for="field_resultUser">Result User</label>
+            <select class="form-control" id="field_resultUser" name="resultUser" [(ngModel)]="tresult.resultUserId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_resultQuiz">Result Quiz</label>
+            <select class="form-control" id="field_resultQuiz" name="resultQuiz" [(ngModel)]="tresult.resultQuizId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="tquizOption.id" *ngFor="let tquizOption of tquizs; trackBy: trackTquizById">{{tquizOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

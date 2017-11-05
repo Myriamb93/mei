@@ -1,0 +1,26 @@
+{
+    "jElearningApp": {
+        "treponse" : {
+            "home": {
+                "title": "Réponses",
+                "createLabel": "Créer un nouveau Treponse",
+                "createOrEditLabel": "Créer ou éditer un Treponse"
+            },
+            "created": "Un nouveau Treponse a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Treponse avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Treponse avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Treponse {{ id }} ?"
+            },
+            "detail": {
+                "title": "Réponses"
+            },
+            "rfirst": "Rfirst",
+            "rsecond": "Rsecond",
+            "rthird": "Rthird",
+            "rfourth": "Rfourth",
+            "reponseQuestion": "Reponse Question",
+            "reponseResult": "Reponse Result"
+        }
+    }
+}

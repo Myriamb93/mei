@@ -1,0 +1,95 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTquestionLabel">Create or edit a Tquestion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!tquestion.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="tquestion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_quest">Quest</label>
+            <input type="text" class="form-control" name="quest" id="field_quest"
+                [(ngModel)]="tquestion.quest"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_first">First</label>
+            <input type="text" class="form-control" name="first" id="field_first"
+                [(ngModel)]="tquestion.first"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_second">Second</label>
+            <input type="text" class="form-control" name="second" id="field_second"
+                [(ngModel)]="tquestion.second"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_third">Third</label>
+            <input type="text" class="form-control" name="third" id="field_third"
+                [(ngModel)]="tquestion.third"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fourth">Fourth</label>
+            <input type="text" class="form-control" name="fourth" id="field_fourth"
+                [(ngModel)]="tquestion.fourth"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_vfirst">Vfirst</label>
+            <input type="checkbox" class="form-control" name="vfirst" id="field_vfirst"
+                [(ngModel)]="tquestion.vfirst"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_vsecond">Vsecond</label>
+            <input type="checkbox" class="form-control" name="vsecond" id="field_vsecond"
+                [(ngModel)]="tquestion.vsecond"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_vthird">Vthird</label>
+            <input type="checkbox" class="form-control" name="vthird" id="field_vthird"
+                [(ngModel)]="tquestion.vthird"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_vfourth">Vfourth</label>
+            <input type="checkbox" class="form-control" name="vfourth" id="field_vfourth"
+                [(ngModel)]="tquestion.vfourth"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_level">Level</label>
+            <select class="form-control" name="level" [(ngModel)]="tquestion.level" id="field_level" >
+                <option value="EASY">EASY</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="HARD">HARD</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_protect">Protect</label>
+            <input type="checkbox" class="form-control" name="protect" id="field_protect"
+                [(ngModel)]="tquestion.protect"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_activation">Activation</label>
+            <input type="checkbox" class="form-control" name="activation" id="field_activation"
+                [(ngModel)]="tquestion.activation"  />
+        </div>
+
+        <div class="form-group">
+            <label for="field_questionQuiz">Question Quiz</label>
+            <select class="form-control" id="field_questionQuiz" name="questionQuiz" [(ngModel)]="tquestion.questionQuizId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="tquizOption.id" *ngFor="let tquizOption of tquizs; trackBy: trackTquizById">{{tquizOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

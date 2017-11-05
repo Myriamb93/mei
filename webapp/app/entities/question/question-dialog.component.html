@@ -1,0 +1,73 @@
+
+
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myQuestionLabel" jhiTranslate="jElearningApp.question.home.createOrEditLabel">Create or edit a Question</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!question.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="question.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.question.quest" for="field_quest">Quest</label>
+            <input type="text" class="form-control" name="quest" id="field_quest"
+                [(ngModel)]="question.quest"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.question.first" for="field_first">First</label>
+            <input type="text" class="form-control" name="first" id="field_first"
+                [(ngModel)]="question.first"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.question.second" for="field_second">Second</label>
+            <input type="text" class="form-control" name="second" id="field_second"
+                [(ngModel)]="question.second"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.question.third" for="field_third">Third</label>
+            <input type="text" class="form-control" name="third" id="field_third"
+                [(ngModel)]="question.third"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.question.fourth" for="field_fourth">Fourth</label>
+            <input type="text" class="form-control" name="fourth" id="field_fourth"
+                [(ngModel)]="question.fourth"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jElearningApp.question.bon" for="field_bon">Bon</label>
+            <select class="form-control" name="bon" [(ngModel)]="question.bon" id="field_bon" >
+                <option value="first" jhiTranslate="jElearningApp.Bon.first">first</option>
+                <option value="second" jhiTranslate="jElearningApp.Bon.second">second</option>
+                <option value="third" jhiTranslate="jElearningApp.Bon.third">third</option>
+                <option value="fourth" jhiTranslate="jElearningApp.Bon.fourth">fourth</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="jElearningApp.question.chapitre" for="field_chapitre">Chapitre</label>
+            <select class="form-control" id="field_chapitre" name="chapitre" [(ngModel)]="question.chapitre" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="chapitreOption.id === question.chapitre?.id ? question.chapitre : chapitreOption" *ngFor="let chapitreOption of chapitres; trackBy: trackChapitreById">{{chapitreOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

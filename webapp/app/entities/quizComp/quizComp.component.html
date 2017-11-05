@@ -1,0 +1,152 @@
+<style>
+    h2{
+        color:#0275d8;
+        font-weight:normal;
+    }
+
+
+    hr{
+        border:none;
+        border-top:1px solid #ddd;
+        background:none;
+        margin:8px 0;
+    }
+
+    .hoot{
+        font-size: 20px;
+    }
+    .option{
+        background-color:rgba(134, 158, 223, 0.04);
+        font-size:15px;
+        padding:10px;
+        margin:3px;
+        font-weight:normal;
+    }
+
+   input[type=radio] {
+       background-color:#eee;
+       border:1px solid #ccc;
+       height:14px;
+       width:14px;
+    }
+
+
+
+    .answered {
+        background-color:#ccffcc;
+        border:1px solid #aaeeaa;
+        margin:2px 0;
+        padding:12px;
+    }
+
+    .not-answered {
+        background-color:#ffcccc;
+        border:1px solid #eeaaaa;
+        margin:2px 0;
+        padding:12px;
+    }
+
+    .result-question{
+        margin:4px;
+        padding:6px;
+        background-color:rgba(134, 158, 223, 0.07);
+        font-size:15px;
+        font-weight:normal;
+    }
+
+
+
+    @media only screen and (max-width: 480px) {
+        h1,.h1{
+            font-size:22px;
+        }
+        h2,.h2{
+            font-size:20px;
+        }
+        h3, .h3{
+            font-size: 20px;
+        }
+        .option {
+            font-size: 16px;
+            padding: 6px;
+        }
+    }
+</style>
+
+
+    <div>
+
+        <button class="btn btn-primary" type="button"
+                [routerLink]="['/chapitre', xId ]" title="retour au chapitre">
+            <span class="glyphicon glyphicon-refresh"></span>
+            <span >
+                                   Retour au chapitre
+                                    </span>
+        </button>
+    </div>
+
+<h2 class="text-sm-center">Quiz<span *ngIf="mode=='resultat'"> Resultats</span> : {{chapitre}} </h2>
+    <hr/> <br>
+    <h2 class="text-sm-center" *ngIf="mode=='resultat'">
+            Vous avez obtenu {{score}}% de bonnes réponses
+            <hr/>
+            <br>
+    </h2>
+
+<div *ngIf="mode=='quiz'">
+
+<div *ngFor="let qst of lesQuestions; let i = index" >
+            <span class="hoot">{{i + 1}}. <span [innerHTML]="qst.quest"></span></span> <br>
+
+                <div class="col-md-6">
+                    <form>
+                     <div class="option">
+                         <input  type="radio" name="act" value="qst.first" (change)="check_answer(qst.bon, 'first', qst.first, i);" />
+                        {{qst.first}}
+                    </div>
+
+                    <div class="option">
+                        <input  type="radio" name="act" value="qst.second" (change)="check_answer(qst.bon, 'second', qst.second, i);" />
+                        {{qst.second}}
+                    </div>
+
+                    <div class="option">
+                        <input  type="radio" name="act" value="qst.third" (change)="check_answer(qst.bon, 'third', qst.third, i);" />
+                        {{qst.third}}
+
+                    </div>
+
+                    <div class="option">
+                        <input  type="radio" name="act" value="qst.fourth" (change)="check_answer(qst.bon, 'fourth', qst.fourth, i);" />
+                        {{qst.fourth}}
+                    </div>
+                    <br><br>
+                    </form>
+                </div>
+        </div>
+</div>
+
+
+<div class="result" *ngIf="mode=='resultat'">
+    <br>
+    <div *ngFor="let ans of answers; let j = index">
+        <div class="result-question">
+           {{j+1}}. {{lesQuestions[j].quest}}
+            <div class="alert {{ ans == '1'? 'alert-success': 'alert-danger'}}">Votre réponse "{{youranswer[j]}}" est<span *ngIf="ans == '1'">  correcte </span> <span *ngIf="ans == '0'"> incorrecte</span>.</div>
+
+            <div *ngIf="ans == '0'">
+                <i>
+                 <div *ngIf="lesQuestions[j].bon == 'first'">La bonne réponse est, {{lesQuestions[j].first}}</div>
+                 <div *ngIf="lesQuestions[j].bon == 'second'">La bonne réponse est, {{lesQuestions[j].second}}</div>
+                 <div *ngIf="lesQuestions[j].bon == 'third'">La bonne réponse est, {{lesQuestions[j].third}}</div>
+                 <div *ngIf="lesQuestions[j].bon == 'fourth'">La bonne réponse est, {{lesQuestions[j].fourth}}</div>
+                </i>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+<div *ngIf="mode == 'quiz'">
+
+    &nbsp;&nbsp; <button class="btn btn-primary" (click)="submit_quiz();">Soumettre</button>
+</div>
